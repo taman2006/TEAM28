@@ -19,7 +19,7 @@ class Kadai_model extends CI_Model {
     {
         if ($limit) { $this->db->limit($limit); }
         return $this->db->order_by('limit_date', 'ASC')
-            ->get('kadai_name')
+            ->get('kadai_kanri')
             ->result_array();
     }
 
@@ -31,7 +31,7 @@ class Kadai_model extends CI_Model {
      */
     public function insert_row($data)
     {
-        return $this->db->insert('message', $data);
+        return $this->db->insert('kadai_kanri', $data);
     }
 
     /**
@@ -44,7 +44,7 @@ class Kadai_model extends CI_Model {
     public function update_row($id, $data)
     {
         return $this->db->where('id', $id)
-            ->update('message', $data);
+            ->update('kadai_kanri', $data);
     }
 
     /**
@@ -56,6 +56,6 @@ class Kadai_model extends CI_Model {
     public function delete_row($id)
     {
         return $this->db->where('id', $id)
-            ->delete('message');
+            ->delete('kadai_kanri');
     }
 }
