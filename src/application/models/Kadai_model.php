@@ -5,8 +5,22 @@ class Kadai_model extends CI_Model {
 
     public function __construct()
     {
-        parent::__construct();
+        // parent::__construct();
         $this->load->database();
+    }
+
+ /**
+     * レコードをid検索して配列として出力
+     * 
+     * @param int $id 
+     * @return array
+     */
+    public function fetch_one_row($id)
+    {
+        return $this->db->where('id', $id)
+            ->select('id, limit_date, kadai_name')
+            ->get('kadai_kanri')
+            ->row_array();
     }
 
     /**
@@ -19,23 +33,23 @@ class Kadai_model extends CI_Model {
     {
         if ($limit) { $this->db->limit($limit); }
         return $this->db->order_by('limit_date', 'ASC')
-            ->get('kadai_name')
+            ->get('kadai_kanri')
             ->result_array();
     }
 
     /**
-     * 掲示板データを入力
+     * 課題を登録
      * 
      * @param array $data
      * @return bool
      */
     public function insert_row($data)
     {
-        return $this->db->insert('message', $data);
+        return $this->db->insert('kadai_kanri', $data);
     }
 
     /**
-     * idを指定して掲示板データを更新
+     * idを指定して課題を更新
      * 
      * @param array $data
      * @param int $id
@@ -44,11 +58,11 @@ class Kadai_model extends CI_Model {
     public function update_row($id, $data)
     {
         return $this->db->where('id', $id)
-            ->update('message', $data);
+            ->update('kadai_kanri', $data);
     }
 
     /**
-     * idを指定して掲示板データを削除
+     * idを指定して課題を削除
      * 
      * @param int $id
      * @return bool
@@ -56,6 +70,6 @@ class Kadai_model extends CI_Model {
     public function delete_row($id)
     {
         return $this->db->where('id', $id)
-            ->delete('message');
+            ->delete('kadai_kanri');
     }
 }
