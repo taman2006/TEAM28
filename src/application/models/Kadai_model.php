@@ -5,8 +5,22 @@ class Kadai_model extends CI_Model {
 
     public function __construct()
     {
-        parent::__construct();
+        // parent::__construct();
         $this->load->database();
+    }
+
+ /**
+     * レコードをid検索して配列として出力
+     * 
+     * @param int $id 
+     * @return array
+     */
+    public function fetch_one_row($id)
+    {
+        return $this->db->where('id', $id)
+            ->select('id, limit_date, kadai_name')
+            ->get('kadai_kanri')
+            ->row_array();
     }
 
     /**
@@ -24,7 +38,7 @@ class Kadai_model extends CI_Model {
     }
 
     /**
-     * 掲示板データを入力
+     * 課題を登録
      * 
      * @param array $data
      * @return bool
@@ -35,7 +49,7 @@ class Kadai_model extends CI_Model {
     }
 
     /**
-     * idを指定して掲示板データを更新
+     * idを指定して課題を更新
      * 
      * @param array $data
      * @param int $id
@@ -48,7 +62,7 @@ class Kadai_model extends CI_Model {
     }
 
     /**
-     * idを指定して掲示板データを削除
+     * idを指定して課題を削除
      * 
      * @param int $id
      * @return bool
