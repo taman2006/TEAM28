@@ -71,7 +71,7 @@
                             <!-- 削除ボタン -->
                             <td>
                                 <form action="<?= base_url('index.php/kadai/delete_bbs') ?>" method="post">
-                                    <button type="sumbit" class="btn btn-dark btn-delete">削除</button>
+                                    <button type="button" class="btn btn-dark btn-delete">削除</button>
                                     <input type="hidden" name="kadai_id" value="<?= html_escape($value['id'] ?? "") ?>">
                                 </form>
                             </td>
@@ -97,21 +97,20 @@
                 format: 'yyyy-mm-dd'
             });
 
-            $('.btn-delete').on('click', function(e) {
+            $('.btn-delete').on('click', function() {
                 var options = {
-                        text: '削除しますか？',
-                        buttons: {
-                            ok: '削除する',
-                            cancel: 'キャンセル'
-                        }
-                    };
-                    swal(options).then(function(value){
-                        if(value){ 
-                        }
-                        console.log(value);
-                        
-                    });
-                });
+                    text: '削除しますか？',
+                    buttons: {
+                        ok: '削除する',
+                        cancel: 'キャンセル'
+                    }
+                };
+                swal(options).then(function(value){
+                    if(value === 'ok'){
+                        $(this).parent('form').submit();
+                    }
+                }.bind(this));
+            });
         </script>
     </body>
 </html>
