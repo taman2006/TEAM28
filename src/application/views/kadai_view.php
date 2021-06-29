@@ -21,15 +21,19 @@
             <form action="<?= base_url('index.php/kadai/add_kadai') ?>" method="post">
                 <div class="form-group">
                     <?php if (!empty($success_message)): ?>
-                        <p class="success_message">
-                            <?= html_escape($success_message) ?>
-                        </p>
+                        <script>
+                            swal("success!", "<?php echo html_escape($success_message); ?>");
+                        </script>
                     <?php endif; ?>
+                    <?php $all_message = null; ?>
                     <?php if (!empty($error_message)): ?>
                     <ul class="error_message">
                         <?php foreach ($error_message as $message): ?>
-                            <li><?= html_escape($message) ?></li>
+                            <?php $all_message = $all_message.$message.'\n'; ?>
                         <?php endforeach; ?>
+                        <script>
+                            swal("error!", "<?php echo html_escape($all_message); ?>");
+                        </script>        
                     </ul>
                     <?php endif; ?>
                     <label>課題を登録：</label>
@@ -96,6 +100,10 @@
             $('#date_sample').datepicker({
                 format: 'yyyy-mm-dd'
             });
+        </script>
+        <!-- sweetalertのjavascriptコード -->
+        <script>
+            // swal("success!", "修正が完了しました！");
 
             $('.btn-delete').on('click', function() {
                 var options = {
@@ -111,6 +119,8 @@
                     }
                 }.bind(this));
             });
+
+           
         </script>
     </body>
 </html>

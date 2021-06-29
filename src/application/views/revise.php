@@ -20,37 +20,22 @@
     <body>
         <div class="container" style="margin-top:50px;">
             <h2 class="title" >LINE de 管理</h2>
-<<<<<<< HEAD
             <form method="post" action="<?= base_url("index.php/kadai/update") ?>">
                 <div class="form-group">
                     <label>課題を修正：</label>
                     <input type="text" name="kadai_name" class="form-control" value="<?= html_escape($message_data['kadai_name'] ?? "") ?>" style="max-width:1000px;">
-=======
-            <form>
-                <div class="form-group">
-                    <label>課題を修正：</label>
-                    <input type="text" class="form-control" placeholder="課題名" style="max-width:1000px;">
->>>>>>> 2a1b601340b5fd7e44e972d1ecda94142ab23c39
                 </div>
             
                 <div class="form-group">
                     <label>期日を修正：</label>
-<<<<<<< HEAD
                     <input type="text" name="limit_date" class="form-control" value="<?= html_escape($message_data['limit_date'] ?? "") ?>" id="date_sample" style="max-width:1000px;" >
                 </div>
-                <button type="sumbit" class="btn btn-success">修正する</button>
+                <button type="button" class="btn btn-success">修正する</button>
                 <input type="hidden" name="kadai_id" value="<?= html_escape($message_data['id'] ?? "")?>">
-=======
-                    <input type="text" class="form-control" placeholder="期日を選択" id="date_sample" style="max-width:1000px;" >
-                </div>
-                <button type="button" class="btn btn-success">修正する</button>    
->>>>>>> 2a1b601340b5fd7e44e972d1ecda94142ab23c39
             </form>   
         </div>
 
-            <script>
-                swal("success!", "修正が完了しました！");
-            </script>
+            
                 
             
 
@@ -66,14 +51,26 @@
 
         <!-- bootstrap-datepickerのjavascriptコード -->
         <script>
-<<<<<<< HEAD
             $('#date_sample').datepicker({
                 format: 'yyyy-mm-dd'
             });
-=======
-            $('#date_sample').datepicker();
->>>>>>> 2a1b601340b5fd7e44e972d1ecda94142ab23c39
-        </script>
+        
+            
+                $('.btn-success').on('click', function() {
+                var options = {
+                    text: '修正しますか？',
+                    buttons: {
+                        ok: '修正する',
+                        cancel: 'キャンセル'
+                    }
+                };
+                swal(options).then(function(value){
+                    if(value === 'ok'){
+                        $(this).closest('form').submit();
+                    }
+                }.bind(this));
+            });
 
+            </script>
     </body>
 </html>
