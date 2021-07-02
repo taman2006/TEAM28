@@ -8,10 +8,9 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-        <link href="/Task_management/Views/css/style.css" rel="stylesheet">
-
         <!-- sweetalertの読み込み -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="<?=base_url() ?>public/style.css" type="text/css"/>
 
     </head>
 
@@ -47,14 +46,13 @@
                 <button type="submit" class="btn btn-success">登録する</button>
             </form>
 
-
             <h2 style="margin-top:50px;">課題リスト</h2>
             <table class="table table-striped" style="max-width:1000px; margin-top:20px;">
 
             <thead>
                 <tr>
                     <th>期限</th>
-                    <th>課題内容</th>
+                    <th nowrap>課題内容</th>
                 </tr>
             </theadv>
         
@@ -62,11 +60,11 @@
                 <?php if (!empty($message_array)): ?>
                     <?php foreach( $message_array as $value ): ?>
                         <tr>
-                            <td><?= html_escape($value['limit_date']) ?></td>
+                            <td><?= html_escape(date('n/d', strtotime($value['limit_date']))) ?></td>
                             <td><?= html_escape($value['kadai_name']) ?></td>
                             <td>
                                 <form action="<?= base_url('index.php/kadai/revise') ?>" method="post">
-                                    <button type="submit" class="btn btn-secondary">編集</button>
+                                <button type="submit" class="btn btn-secondary">編集</button>
                                     <input type="hidden" name="kadai_id" value="<?= html_escape($value['id'] ?? "") ?>">
                                     <input type="hidden" name="limit_date" value="<?= html_escape($value['limit_date'] ?? "") ?>">
                                     <input type="hidden" name="kadai_name" value="<?= html_escape($value['kadai_name'] ?? "") ?>">
