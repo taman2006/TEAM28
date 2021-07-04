@@ -1,11 +1,14 @@
 # TEAM28チーム開発 【LINE de 管理】
+
 登録した課題の期日の3日～1日前になるとLINEに通知が届く課題管理アプリ
  
 # DEMO
+
 課題登録画面とLINEでの通知画面
+
 ![デモ1](https://user-images.githubusercontent.com/82738762/124371810-63bb8f80-dcc0-11eb-806b-16f81b3e8f42.png)
 ![デモ2](https://user-images.githubusercontent.com/82738762/124371812-64ecbc80-dcc0-11eb-822d-8bc4591c61d2.png)
- 
+
 # Features
  
 "hoge"のセールスポイントや差別化などを説明する
