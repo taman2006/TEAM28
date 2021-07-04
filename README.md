@@ -30,14 +30,12 @@ https://codeigniter.com/download
 https://knowledge.sakura.ad.jp/serialization/understood-cats-vps/
  
 # Usage
- 
-DEMOの実行方法など、"hoge"の基本的な使い方を説明する
- 
-```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
-```
+
+サーバー上のアドレス
+* https://tamataka.ddo.jp/
+
+LINE Notify アクセストークン発行方法
+* LINE Notifyを使ってトークルームにメッセージ送信 https://www.smilevision.co.jp/blog/tsukatte01/
  
 # Note
  
@@ -71,10 +69,4 @@ Cron設定の際の参考サイト
 * E-mail
  
 # License
-ライセンスを明示する
- 
-"hoge" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
- 
-社内向けなら社外秘であることを明示してる
- 
-"hoge" is Confidential.
+
