@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/team28/src/';
+$config['base_url'] = 'https://tamataka.ddo.jp/'; //サーバ上の'base_url'ローカル環境の場合は'http://localhost/team28/src/'に変更する。
 
 /*
 |--------------------------------------------------------------------------

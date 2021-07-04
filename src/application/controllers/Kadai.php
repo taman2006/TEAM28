@@ -4,17 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Kadai extends CI_Controller
 {
 
-    public function __construct()
-    {
-        // CI_Model constructor の呼び出し
-        parent::__construct();
-        $this->load->library('session');
-        $this->load->model('Kadai_model');
-        $this->load->helper('url');
-        $this->load->library('form_validation');
-        date_default_timezone_set('Asia/Tokyo');
-    }
-
     /**
      * CodeIgniterではコントローラーにindexメソッドを指定すると自動でそのメソッドを実行します
      *
@@ -50,6 +39,17 @@ class Kadai extends CI_Controller
         }
 
         $this->load->view('kadai_view', $data);
+    }
+
+    public function __construct()
+    {
+        // CI_Model constructor の呼び出し
+        parent::__construct();
+        $this->load->library('session');
+        $this->load->model('Kadai_model');
+        $this->load->helper('url');
+        $this->load->library('form_validation');
+        date_default_timezone_set('Asia/Tokyo');
     }
 
      /**
