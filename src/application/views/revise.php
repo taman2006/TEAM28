@@ -8,13 +8,11 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-        <link href="/Task_management/Views/css/style.css" rel="stylesheet">
-
         <title>LINE de 管理</title>
 
         <!-- sweetalertの読み込み -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+        <link rel="stylesheet" href="<?=base_url() ?>public/style.css" type="text/css" />
     </head>
 
     <body>
