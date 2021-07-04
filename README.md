@@ -49,7 +49,7 @@ application\config\database.php
 
 * 80行目　⇒　パスワードをローカル環境のphpMyAdminのパスワードに変更
 
-application\controllers\Kadai.php
+application\controllers\Send.php
 
 * 4行目　⇒　LINE_API_TOKENを取得したアクセストークンに置き換える
  
