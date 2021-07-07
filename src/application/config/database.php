@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => '',
+	'password' => 'Mikashimakana+1091', //各自設定を変えてください。
 	'database' => 'team28',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
@@ -94,4 +94,3 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-

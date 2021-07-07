@@ -1,11 +1,7 @@
 <?php
 
+class Send_message extends CI_Model {
 
-class send_message extends CI_Model {
-
-    
-
-  
   public function post_message($message){
       $message = urldecode($message); //日本語を正しく表示させるために追加
       $data = array(
@@ -29,5 +25,4 @@ class send_message extends CI_Model {
       }
       return true;
   }
-  
 }

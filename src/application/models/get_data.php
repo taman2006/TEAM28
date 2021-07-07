@@ -1,10 +1,6 @@
-
 <?php
 
-
-class get_data extends CI_Model {
-
-  
+class Get_data extends CI_Model {
 
   public function __construct(){
     $this->load->database();
@@ -31,12 +27,8 @@ class get_data extends CI_Model {
     $diff_sec = $unix - $now;
     $time = $diff_sec / 86400;
 
-
- 
     if ($unix > $now) {
         return (int)$time + 1;
     } 
- 
   }
-  
 }
