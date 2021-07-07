@@ -6,15 +6,15 @@
 
 課題登録画面とLINEでの通知画面
 
-![デモ1](https://user-images.githubusercontent.com/82738762/124371810-63bb8f80-dcc0-11eb-806b-16f81b3e8f42.png)
-![デモ2](https://user-images.githubusercontent.com/82738762/124371812-64ecbc80-dcc0-11eb-822d-8bc4591c61d2.png)
+![デモ1](https://user-images.githubusercontent.com/82738762/124776463-6e08b280-df7a-11eb-81c2-805a7d46089e.PNG)
+![デモ２](https://user-images.githubusercontent.com/82738762/124776479-7103a300-df7a-11eb-8f44-8f85c6fd061d.PNG)
 
 # Features
  
 今後ユーザーIDの導入でユーザー毎の課題管理を実装予定
  
 # Requirement
- 
+
 使用しているフレームワーク
 * CodeIgniter3
 
