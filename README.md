@@ -6,8 +6,8 @@
 
 課題登録画面とLINEでの通知画面
 
-![デモ1](https://user-images.githubusercontent.com/82738762/124776463-6e08b280-df7a-11eb-81c2-805a7d46089e.PNG)
-![デモ２](https://user-images.githubusercontent.com/82738762/124776479-7103a300-df7a-11eb-8f44-8f85c6fd061d.PNG)
+![デモ1](https://user-images.githubusercontent.com/82738762/124778104-aeb4fb80-df7b-11eb-83a8-61592c470bd6.PNG)
+![デモ2](https://user-images.githubusercontent.com/82738762/124778115-afe62880-df7b-11eb-969e-3cd11610595f.PNG)
 
 # Features
  
@@ -38,20 +38,6 @@ LINE Notify アクセストークン発行方法
 * LINE Notifyを使ってトークルームにメッセージ送信 https://www.smilevision.co.jp/blog/tsukatte01/
  
 # Note
- 
-### 最新のコードはサーバー運用バージョンのため、ローカル環境で動かすには下記変更が必要
-
-application\config\config.php
-
-* 26行目　⇒　$config['base_url']= 'http://localhost/team28/src/';
-
-application\config\database.php
-
-* 80行目　⇒　パスワードをローカル環境のphpMyAdminのパスワードに変更
-
-application\controllers\Send.php
-
-* 4行目　⇒　LINE_API_TOKENを取得したアクセストークンに置き換える
  
  ### サーバ上で定時にメッセージ送信を行うCronの記述
  * 0 8 *  *  * php /var/www/html/index.php Send index
