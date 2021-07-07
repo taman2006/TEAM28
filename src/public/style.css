@@ -1,4 +1,90 @@
-body,.title{
-    font-family: serif, "Times New Roman", Times, serif;
+
+/*フォント・カラー・背景色指定*/
+body{
+    font-family:'DM Serif Display', "Noto Sans JP";
     color: #555;
+    background-color: #F5F5F5;
 }
+
+
+/*LINEアイコン*/
+.line-btn{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.my-green{
+    color: #32CD32;
+    text-align: center;
+}
+
+
+/*見出し*/
+.heading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 26px;
+	text-align: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.heading::before,
+.heading::after {
+	content: '';
+	width: 70px;
+	height: 3px;
+	background-color: #666666;
+}
+
+.heading::before {
+	margin-right: 20px;
+}
+.heading::after {
+	margin-left: 20px;
+}
+
+
+/*登録ボタン*/
+.btn-success {
+    color: #fff;
+    background-color: #32CD32;
+    border-color: #28a745;
+    margin-top: 10px;
+}
+
+.touroku-btn {
+    text-align: center;
+}
+
+
+/*タスクリスト見出し*/
+.tasklist h2{
+    margin-top: 60px;
+}
+
+
+/*編集ボタン*/
+.btn-secondary {
+    color: #fff;
+    background-color: #32CD32;
+    border-color: #28a745;
+}
+
+
+/*削除ボタン*/
+.btn-dark{
+    color: #fff;
+    background-color: #666666;
+    border-color: #555;
+}
+
+
+
+/*修正ぺージ*/
+
+.revise-btn{
+    text-align: center;
+}
+

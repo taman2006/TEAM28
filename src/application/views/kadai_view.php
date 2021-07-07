@@ -10,43 +10,60 @@
 
         <!-- sweetalertの読み込み -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <!-- style.cssの読み込み -->
         <link rel="stylesheet" href="<?=base_url() ?>public/style.css" type="text/css"/>
 
+        <!-- FontAwesomeの読み込み -->
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+        <!-- Googleフォント読み込み -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Rancho&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+        
     </head>
 
     <body>
         <div class="container" style="margin-top:50px;">
-            <h2>LINE de 管理</h2>
-            <form action="<?= base_url('index.php/kadai/add_kadai') ?>" method="post">
-                <div class="form-group">
-                    <?php if (!empty($success_message)): ?>
-                        <script>
-                            swal("success!", "<?php echo html_escape($success_message); ?>");
-                        </script>
-                    <?php endif; ?>
-                    <?php $all_message = null; ?>
-                    <?php if (!empty($error_message)): ?>
-                    <ul class="error_message">
-                        <?php foreach ($error_message as $message): ?>
-                            <?php $all_message = $all_message.$message.'\n'; ?>
-                        <?php endforeach; ?>
-                        <script>
-                            swal("error!", "<?php echo html_escape($all_message); ?>");
-                        </script>        
-                    </ul>
-                    <?php endif; ?>
-                    <label>課題を登録：</label>
-                    <input type="text" class="form-control" name="kadai_name" placeholder="課題名" style="max-width:1000px;">
-                </div>
+        <div class="line-btn">
+            <i class="fab fa-line fa-3x my-green"></i>
+        </div>
+        <h2 class="heading">Task Management</h2>
+                <form action="<?= base_url('index.php/kadai/add_kadai') ?>" method="post">
+                    <div class="form-group">
+                        <?php if (!empty($success_message)): ?>
+                            <script>
+                                swal("success!", "<?php echo html_escape($success_message); ?>");
+                            </script>
+                        <?php endif; ?>
+                        <?php $all_message = null; ?>
+                        <?php if (!empty($error_message)): ?>
+                        <ul class="error_message">
+                            <?php foreach ($error_message as $message): ?>
+                                <?php $all_message = $all_message.$message.'\n'; ?>
+                            <?php endforeach; ?>
+                            <script>
+                                swal("error!", "<?php echo html_escape($all_message); ?>");
+                            </script>        
+                        </ul>
+                        <?php endif; ?>
+                        <label>課題を登録：</label>
+                        <input type="text" class="form-control" name="kadai_name" placeholder="課題名" style="max-width:1000px;">
+                    </div>
 
                 <div class="form-group">
                     <label>期日：</label>
                     <input type="text" class="form-control"  name="limit_date" placeholder="期日を選択" id="date_sample" style="max-width:1000px;">
                 </div>
+                <div class="touroku-btn">
                 <button type="submit" class="btn btn-success">登録する</button>
+                </div>
             </form>
-
-            <h2 style="margin-top:50px;">課題リスト</h2>
+            <div class="tasklist">
+                <h2 class="heading">Task List</h2>
+            </div>
             <table class="table table-striped" style="max-width:1000px; margin-top:20px;">
 
             <thead>
@@ -63,11 +80,12 @@
                             <td><?= html_escape(date('n/d', strtotime($value['limit_date']))) ?></td>
                             <td><?= html_escape($value['kadai_name']) ?></td>
                             <td>
-                                <form action="<?= base_url('index.php/kadai/revise') ?>" method="post">
-                                <button type="submit" class="btn btn-secondary">編集</button>
+                                <form action="<?= base_url('index.php/kadai/revise') ?>" method="post">                   
+                                    <button type="submit" class="btn btn-secondary">編集</button>
                                     <input type="hidden" name="kadai_id" value="<?= html_escape($value['id'] ?? "") ?>">
                                     <input type="hidden" name="limit_date" value="<?= html_escape($value['limit_date'] ?? "") ?>">
                                     <input type="hidden" name="kadai_name" value="<?= html_escape($value['kadai_name'] ?? "") ?>">
+
                                 </form>
                             </td>
                             <!-- 削除ボタン -->
@@ -118,7 +136,6 @@
                 }.bind(this));
             });
 
-           
         </script>
     </body>
 </html>

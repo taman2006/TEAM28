@@ -12,12 +12,27 @@
 
         <!-- sweetalertの読み込み -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <link rel="stylesheet" href="<?=base_url() ?>public/style.css" type="text/css" />
+        
+        <!-- style.cssの読み込み -->
+        <link rel="stylesheet" href="<?=base_url() ?>public/style.css" type="text/css"/>
+
+        <!-- FontAwesomeの読み込み -->
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+        <!-- Googleフォント読み込み -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Rancho&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+
     </head>
 
     <body>
         <div class="container" style="margin-top:50px;">
-            <h2 class="title" >LINE de 管理</h2>
+        <div class="line-btn">
+            <i class="fab fa-line fa-3x my-green"></i>
+        </div>
+        <h2 class="heading">Revise</h2>
             <form method="post" action="<?= base_url("index.php/kadai/update") ?>">
                 <div class="form-group">
                     <label>課題を修正：</label>
@@ -28,7 +43,9 @@
                     <label>期日を修正：</label>
                     <input type="text" name="limit_date" class="form-control" value="<?= html_escape($message_data['limit_date'] ?? "") ?>" id="date_sample" style="max-width:1000px;" >
                 </div>
-                <button type="button" class="btn btn-success">修正する</button>
+                <div class="revise-btn">
+                    <button type="button" class="btn btn-success">修正する</button>
+                </div>
                 <input type="hidden" name="kadai_id" value="<?= html_escape($message_data['id'] ?? "")?>">
             </form>   
         </div>
