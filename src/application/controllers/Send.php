@@ -1,7 +1,7 @@
 <?php
 
 define('LINE_API_URL'  ,"https://notify-api.line.me/api/notify");
-define('LINE_API_TOKEN','2427s3EAAJfJL38Txxv3c2VvjucJWDSXZ8UUTZsSfGU');    // 「LINE_API_TOKEN」を取得したアクセストークンに置き換える
+define('LINE_API_TOKEN','D4P4S0774mDuuRQQSLvmqxShNpW0IbGoOTogWDUqhzK');    // 「LINE_API_TOKEN」を取得したアクセストークンに置き換える
 class Send extends CI_Controller {
 
   public function index(){
