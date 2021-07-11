@@ -38,9 +38,17 @@ LINE Notify アクセストークン発行方法
 * LINE Notifyを使ってトークルームにメッセージ送信 https://www.smilevision.co.jp/blog/tsukatte01/
  
 # Note
+ ### Codeigniterの環境設定
+ (application/config/production/)ディレクトリを作成。
+ 
+ 参考サイト　https://qiita.com/blues25/items/cbf7b372b1bdedf08c9a
  
  ### サーバ上で定時にメッセージ送信を行うCronの記述
+ Codeigniterの環境設定前
  * 0 8 *  *  * php /var/www/html/index.php Send index
+
+ Codeigniterの環境設定後
+ * 0 8 * * * CI_ENV=production php /var/www/html/index.php Send index
 
 Cron設定の際の参考サイト
 * Codeigniter3をCronで動かす簡単な方法　http://program-memo.com/archives/389
