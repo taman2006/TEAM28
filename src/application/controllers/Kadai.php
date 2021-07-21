@@ -14,6 +14,7 @@ class Kadai extends CI_Controller
         $this->load->helper('url');
         $this->load->library('form_validation');
         date_default_timezone_set('Asia/Tokyo');
+        session_start();
     }
 
 
@@ -39,7 +40,7 @@ class Kadai extends CI_Controller
       */
     public function index()
     {
-        session_start();
+        
         // ログインしていない場合は、認可URLにリダイレクト
         if(!isset($_SESSION['user_id'])) {
 

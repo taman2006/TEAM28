@@ -87,16 +87,16 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 //追加(Kadai.php)
 define('LINE_LOGIN_AUTHORIZE_URL', 'https://access.line.me/oauth2/v2.1/authorize');
 define('LINE_LOGIN_CHANNEL_ID', '1656214947');
-define('LINE_LOGIN_CALLBACK_URL', 'https://6279743e9617.ngrok.io/line-login/callback.php');//毎回変更
+define('LINE_LOGIN_CALLBACK_URL', 'https://03a0e4fc55b1.ngrok.io/TEAM28/src/Callback');//毎回変更
 define('LINE_LOGIN_SCOPE', 'profile openid');
 
 //追加(Callback.php)
 define('LINE_LOGIN_TOKEN_URL', 'https://api.line.me/oauth2/v2.1/token');
 define('LINE_LOGIN_VERIFY_URL', 'https://api.line.me/oauth2/v2.1/verify');
 
-define('LINE_LOGIN_CHANNEL_SECRET', '57315e3fb0022f25d70ee993a6c75839');//毎回変更
+define('LINE_LOGIN_CHANNEL_SECRET', '57315e3fb0022f25d70ee993a6c75839');
 
-define('APP_MAIN_URL', 'index.php');
+define('APP_MAIN_URL', 'Kadai');
 
 //追加(Send.php)
 define('LINE_MESSAGE_PUSH_URL', 'https://api.line.me/v2/bot/message/push');
