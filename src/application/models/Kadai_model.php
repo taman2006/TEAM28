@@ -72,4 +72,12 @@ class Kadai_model extends CI_Model {
         return $this->db->where('id', $id)
             ->delete('kadai_kanri');
     }
+
+    // Base64URLエンコードするための関数
+    public function base64url_encode($data) 
+    {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
 }
+
+    
