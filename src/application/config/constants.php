@@ -86,18 +86,18 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 //追加(Kadai.php)
 define('LINE_LOGIN_AUTHORIZE_URL', 'https://access.line.me/oauth2/v2.1/authorize');
-define('LINE_LOGIN_CHANNEL_ID', '1656214947');
-define('LINE_LOGIN_CALLBACK_URL', 'https://03a0e4fc55b1.ngrok.io/TEAM28/src/Callback');//毎回変更
+define('LINE_LOGIN_CHANNEL_ID', '1656201877');
+define('LINE_LOGIN_CALLBACK_URL', 'https://23c95bfbb9a5.ngrok.io/TEAM28/src/Callback');//毎回変更
 define('LINE_LOGIN_SCOPE', 'profile openid');
 
 //追加(Callback.php)
 define('LINE_LOGIN_TOKEN_URL', 'https://api.line.me/oauth2/v2.1/token');
 define('LINE_LOGIN_VERIFY_URL', 'https://api.line.me/oauth2/v2.1/verify');
 
-define('LINE_LOGIN_CHANNEL_SECRET', '57315e3fb0022f25d70ee993a6c75839');
+define('LINE_LOGIN_CHANNEL_SECRET', '77198e43c8793d4b7763b8b9a3985be2');
 
 define('APP_MAIN_URL', 'Kadai');
 
 //追加(Send.php)
 define('LINE_MESSAGE_PUSH_URL', 'https://api.line.me/v2/bot/message/push');
-define('LINE_MESSAGE_CHANNEL_ACCESS_TOKEN', '400Dgsx5ndpfGK9v5PZ/OkTr3XCFDS2Y+njGivfm8v0+XOcba/oYoWY1S+MASlPuZuaVQNySFG50q09u2YYEkY/NF+dDpZKwwa3RF1kJyhYNlr0J3m0+kclcvnI9tMe3veRVS3h+DZEQ+X89OFUetwdB04t89/1O/w1cDnyilFU=');
+define('LINE_MESSAGE_CHANNEL_ACCESS_TOKEN', 'RaMgjK9pYJcNTRRcguWuwid7AQR22zWKvMp9SNDzvFM/vXHT5G0wiF2opOicowaGUevztykUB/oi9+TGbfMQgWrrdrUeXSxOwRlx3bvzMga86nWJOLVkDEkW47r2Fr8JGKAdrtZtgXMITxsrGMfl1AdB04t89/1O/w1cDnyilFU=');
