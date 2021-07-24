@@ -87,7 +87,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 //追加(Kadai.php)
 define('LINE_LOGIN_AUTHORIZE_URL', 'https://access.line.me/oauth2/v2.1/authorize');
 define('LINE_LOGIN_CHANNEL_ID', '1656214947');
-define('LINE_LOGIN_CALLBACK_URL', 'https://tamataka.ddo.jp//Callback');//サーバー仕様
+define('LINE_LOGIN_CALLBACK_URL', 'https://tamataka.ddo.jp/Callback');//サーバー仕様
 define('LINE_LOGIN_SCOPE', 'profile openid');
 
 //追加(Callback.php)
