@@ -24,15 +24,17 @@ class Kadai_model extends CI_Model {
     }
 
     /**
-     * 全課題を取得して配列として出力
+     * ユーザー毎の全課題を取得して配列として出力
      * 
      * @param int $limit=null 
      * @return array
      */
     public function fetch_all_rows($limit=null)
     {
+        $user_id = $_SESSION['user_id'];
         if ($limit) { $this->db->limit($limit); }
-        return $this->db->order_by('limit_date', 'ASC')
+        return $this->db->where('user_id', $user_id)
+            ->select('id, user_id, limit_date, kadai_name')
             ->get('kadai_kanri')
             ->result_array();
     }

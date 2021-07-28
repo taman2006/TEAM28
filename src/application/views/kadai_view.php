@@ -31,6 +31,10 @@
             <i class="fab fa-line fa-3x my-green"></i>
         </div>
         <h2 class="heading">Task Management</h2>
+        <ul>
+        <li>ユーザー名：<?php echo $_SESSION['name']; ?></li>
+        </ul>
+
                 <form action="<?= base_url('index.php/kadai/add_kadai') ?>" method="post">
                     <div class="form-group">
                         <?php if (!empty($success_message)): ?>
@@ -56,6 +60,7 @@
                 <div class="form-group">
                     <label>期日：</label>
                     <input type="text" class="form-control"  name="limit_date" placeholder="期日を選択" id="date_sample" style="max-width:1000px;">
+                    <input type="hidden" name="user_id" value=<?php $_SESSION['user_id']; ?>>
                 </div>
                 <div class="touroku-btn">
                 <button type="submit" class="btn btn-success">登録する</button>
@@ -83,6 +88,7 @@
                                 <form action="<?= base_url('index.php/kadai/revise') ?>" method="post">                   
                                     <button type="submit" class="btn btn-secondary">編集</button>
                                     <input type="hidden" name="kadai_id" value="<?= html_escape($value['id'] ?? "") ?>">
+                                    <input type="hidden" name="user_id" value="<?= html_escape($value['user_id'] ?? "") ?>">
                                     <input type="hidden" name="limit_date" value="<?= html_escape($value['limit_date'] ?? "") ?>">
                                     <input type="hidden" name="kadai_name" value="<?= html_escape($value['kadai_name'] ?? "") ?>">
 

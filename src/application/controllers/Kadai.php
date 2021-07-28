@@ -50,6 +50,7 @@ class Kadai extends CI_Controller
             $_SESSION['oauth_state'] = bin2hex(random_bytes(16));
             $_SESSION['oauth_nonce'] = bin2hex(random_bytes(16));
             $_SESSION['oauth_code_verifier'] = $this->Kadai_model->base64url_encode(random_bytes(32));
+            
 
             $url = LINE_LOGIN_AUTHORIZE_URL . '?' . http_build_query([
                 'response_type' => 'code',
@@ -140,7 +141,7 @@ class Kadai extends CI_Controller
         $limit = $this->input->post('limit_date', true);  
 
         $data = [
-            'user_id' => null,
+            'user_id' => $_SESSION['user_id'],
             'kadai_name' => $k_name,
             'limit_date' => $limit
         ];
