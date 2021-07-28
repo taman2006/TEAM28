@@ -60,7 +60,6 @@
                 <div class="form-group">
                     <label>期日：</label>
                     <input type="text" class="form-control"  name="limit_date" placeholder="期日を選択" id="date_sample" style="max-width:1000px;">
-                    <input type="hidden" name="user_id" value=<?php $_SESSION['user_id']; ?>>
                 </div>
                 <div class="touroku-btn">
                 <button type="submit" class="btn btn-success">登録する</button>

@@ -35,6 +35,7 @@ class Kadai_model extends CI_Model {
         if ($limit) { $this->db->limit($limit); }
         return $this->db->where('user_id', $user_id)
             ->select('id, user_id, limit_date, kadai_name')
+            ->order_by('limit_date', 'ASC')
             ->get('kadai_kanri')
             ->result_array();
     }
