@@ -12,7 +12,7 @@ class Get_data extends CI_Model {
     $this->load->dbutil();
     // $this->db->where('limit_date <=','DATE_ADD(now("Asia/Tokyo"),INTERVAL 3 DAYS )');
     $this->db->order_by('limit_date','desc');
-    $this->db->select('kadai_name , limit_date');
+    $this->db->select('kadai_name , limit_date ,user_id');
     $query = $this->db->get('kadai_kanri');
     $results = $query->result_array();
 

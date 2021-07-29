@@ -7,25 +7,25 @@ class send_message extends CI_Model {
     
 
   
-  public function post_message(){
+  public function post_message($user_id,$message){
     
-    session_start();
+    
     
     // CSRF対策（<form>からの送信でなければ不要）
-    if($_SESSION['csrf_token'] != $_POST['_csrf']) {
-        echo 'CSRFトークンが不正です。';
-        exit;
-    }
+    // if($_SESSION['csrf_token'] != $_POST['_csrf']) {
+    //     echo 'CSRFトークンが不正です。';
+    //     exit;
+    // }
 
     // プッシュメッセージを送る
     // See. https://developers.line.biz/ja/reference/messaging-api/#send-push-message
 
     $body = [
-        'to' => $_SESSION['user_id'],
+        'to' => $user_id,
         'messages' => [
             [
                 'type' => 'text',
-                'text' => $_POST['message']
+                'text' => $message
             ]
         ]
     ];
@@ -45,7 +45,7 @@ class send_message extends CI_Model {
     }
 
     // メイン画面に戻る
-    header('Location: ' . APP_MAIN_URL);
+    // header('Location: ' . APP_MAIN_URL);
     }
     
 

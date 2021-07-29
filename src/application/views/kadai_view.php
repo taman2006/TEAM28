@@ -26,6 +26,7 @@
     </head>
 
     <body>
+        <?php echo $_SESSION['user_id']; ?>
         <div class="container" style="margin-top:50px;">
         <div class="line-btn">
             <i class="fab fa-line fa-3x my-green"></i>

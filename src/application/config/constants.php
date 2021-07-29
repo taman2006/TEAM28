@@ -87,7 +87,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 //追加(Kadai.php)
 define('LINE_LOGIN_AUTHORIZE_URL', 'https://access.line.me/oauth2/v2.1/authorize');
 define('LINE_LOGIN_CHANNEL_ID', '1656214947');
-define('LINE_LOGIN_CALLBACK_URL', 'https://03a0e4fc55b1.ngrok.io/TEAM28/src/Callback');//毎回変更
+define('LINE_LOGIN_CALLBACK_URL', 'https://11fa3c623ec0.ngrok.io/TEAM28/src/Callback');//毎回変更
 define('LINE_LOGIN_SCOPE', 'profile openid');
 
 //追加(Callback.php)
