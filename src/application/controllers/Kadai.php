@@ -50,6 +50,7 @@ class Kadai extends CI_Controller
             $_SESSION['oauth_state'] = bin2hex(random_bytes(16));
             $_SESSION['oauth_nonce'] = bin2hex(random_bytes(16));
             $_SESSION['oauth_code_verifier'] = $this->Kadai_model->base64url_encode(random_bytes(32));
+            
 
             $url = LINE_LOGIN_AUTHORIZE_URL . '?' . http_build_query([
                 'response_type' => 'code',
@@ -70,10 +71,6 @@ class Kadai extends CI_Controller
             exit;
         }
 
-
-
-
-
         $data = null;
         $data['message_array'] = $this->Kadai_model->fetch_all_rows();
 
@@ -88,12 +85,6 @@ class Kadai extends CI_Controller
 
         $this->load->view('kadai_view', $data);
     }
-
-
-
-    
-
-
 
      /**
      * httpリクエストのパラメータの正当性を検証
@@ -140,7 +131,7 @@ class Kadai extends CI_Controller
         $limit = $this->input->post('limit_date', true);  
 
         $data = [
-            'user_id' => null,
+            'user_id' => $_SESSION['user_id'],
             'kadai_name' => $k_name,
             'limit_date' => $limit
         ];
@@ -210,10 +201,7 @@ class Kadai extends CI_Controller
     {
         $data = null;
         var_dump($this->input->post('kadai_id', true));
-        // log_message('info', print_r($_POST, true));
-        // log_message('info', print_r($_POST, true));
         
-
         if (!($id = $this->input->post('kadai_id', true))) {
             $_SESSION['error_message'][] = '更新に必要なパラメータが含まれていません';
             redirect();
@@ -225,13 +213,11 @@ class Kadai extends CI_Controller
             redirect();
         }
 
-        // log_message(‘debug’, ‘test’);
-
         $k_name = $this->input->post('kadai_name', true);  
         $limit = $this->input->post('limit_date', true);  
        
         $data = [
-            'user_id' => null,
+            'user_id' => $_SESSION['user_id'],
             'kadai_name' => $k_name,
             'limit_date' => $limit
         ];
