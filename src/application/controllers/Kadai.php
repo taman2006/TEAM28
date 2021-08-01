@@ -41,35 +41,7 @@ class Kadai extends CI_Controller
     public function index()
     {
         
-        // ログインしていない場合は、認可URLにリダイレクト
-        if(!isset($_SESSION['user_id'])) {
-
-            // ユーザーに認証と認可を要求する(PKCEにも対応)
-            // See. https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request
-
-            $_SESSION['oauth_state'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_nonce'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_code_verifier'] = $this->Kadai_model->base64url_encode(random_bytes(32));
-            
-
-            $url = LINE_LOGIN_AUTHORIZE_URL . '?' . http_build_query([
-                'response_type' => 'code',
-                'client_id' => LINE_LOGIN_CHANNEL_ID,
-                'redirect_uri' => LINE_LOGIN_CALLBACK_URL,
-                'state' => $_SESSION['oauth_state'],
-                'scope' => LINE_LOGIN_SCOPE,
-                'nonce' => $_SESSION['oauth_nonce'],
-                'code_challenge' => $this->Kadai_model->base64url_encode(hash('sha256', $_SESSION['oauth_code_verifier'], true)),
-                'code_challenge_method' => 'S256'
-            ]);
-
-            // 認可URLにリダイレクト
-            header("Location: $url");
-
-            // ユーザーによる認証と認可のプロセスが始まる
-            // 完了すると、LINE_LOGIN_CALLBACK_URLにリダイレクトされる
-            exit;
-        }
+        $this->Kadai_model->login_check();
 
         $data = null;
         $data['message_array'] = $this->Kadai_model->fetch_all_rows();
@@ -122,35 +94,7 @@ class Kadai extends CI_Controller
     public function add_kadai()
     {
 
-         // ログインしていない場合は、認可URLにリダイレクト
-         if(!isset($_SESSION['user_id'])) {
-
-            // ユーザーに認証と認可を要求する(PKCEにも対応)
-            // See. https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request
-
-            $_SESSION['oauth_state'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_nonce'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_code_verifier'] = $this->Kadai_model->base64url_encode(random_bytes(32));
-            
-
-            $url = LINE_LOGIN_AUTHORIZE_URL . '?' . http_build_query([
-                'response_type' => 'code',
-                'client_id' => LINE_LOGIN_CHANNEL_ID,
-                'redirect_uri' => LINE_LOGIN_CALLBACK_URL,
-                'state' => $_SESSION['oauth_state'],
-                'scope' => LINE_LOGIN_SCOPE,
-                'nonce' => $_SESSION['oauth_nonce'],
-                'code_challenge' => $this->Kadai_model->base64url_encode(hash('sha256', $_SESSION['oauth_code_verifier'], true)),
-                'code_challenge_method' => 'S256'
-            ]);
-
-            // 認可URLにリダイレクト
-            header("Location: $url");
-
-            // ユーザーによる認証と認可のプロセスが始まる
-            // 完了すると、LINE_LOGIN_CALLBACK_URLにリダイレクトされる
-            exit;
-        }       
+        $this->Kadai_model->login_check();    
 
         if (!$this->request_validation()) {
             $errors = $this->form_validation->error_array();
@@ -183,35 +127,7 @@ class Kadai extends CI_Controller
     public function delete_bbs()
     {
 
-        // ログインしていない場合は、認可URLにリダイレクト
-        if(!isset($_SESSION['user_id'])) {
-
-            // ユーザーに認証と認可を要求する(PKCEにも対応)
-            // See. https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request
-
-            $_SESSION['oauth_state'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_nonce'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_code_verifier'] = $this->Kadai_model->base64url_encode(random_bytes(32));
-            
-
-            $url = LINE_LOGIN_AUTHORIZE_URL . '?' . http_build_query([
-                'response_type' => 'code',
-                'client_id' => LINE_LOGIN_CHANNEL_ID,
-                'redirect_uri' => LINE_LOGIN_CALLBACK_URL,
-                'state' => $_SESSION['oauth_state'],
-                'scope' => LINE_LOGIN_SCOPE,
-                'nonce' => $_SESSION['oauth_nonce'],
-                'code_challenge' => $this->Kadai_model->base64url_encode(hash('sha256', $_SESSION['oauth_code_verifier'], true)),
-                'code_challenge_method' => 'S256'
-            ]);
-
-            // 認可URLにリダイレクト
-            header("Location: $url");
-
-            // ユーザーによる認証と認可のプロセスが始まる
-            // 完了すると、LINE_LOGIN_CALLBACK_URLにリダイレクトされる
-            exit;
-        }
+        $this->Kadai_model->login_check();
 
         if (!($id = $this->input->post('kadai_id', true))) {
             $_SESSION['error_message'][] = '削除に必要なパラメータが含まれていません';
@@ -234,35 +150,7 @@ class Kadai extends CI_Controller
     public function revise()
     {
 
-        // ログインしていない場合は、認可URLにリダイレクト
-        if(!isset($_SESSION['user_id'])) {
-
-            // ユーザーに認証と認可を要求する(PKCEにも対応)
-            // See. https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request
-
-            $_SESSION['oauth_state'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_nonce'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_code_verifier'] = $this->Kadai_model->base64url_encode(random_bytes(32));
-            
-
-            $url = LINE_LOGIN_AUTHORIZE_URL . '?' . http_build_query([
-                'response_type' => 'code',
-                'client_id' => LINE_LOGIN_CHANNEL_ID,
-                'redirect_uri' => LINE_LOGIN_CALLBACK_URL,
-                'state' => $_SESSION['oauth_state'],
-                'scope' => LINE_LOGIN_SCOPE,
-                'nonce' => $_SESSION['oauth_nonce'],
-                'code_challenge' => $this->Kadai_model->base64url_encode(hash('sha256', $_SESSION['oauth_code_verifier'], true)),
-                'code_challenge_method' => 'S256'
-            ]);
-
-            // 認可URLにリダイレクト
-            header("Location: $url");
-
-            // ユーザーによる認証と認可のプロセスが始まる
-            // 完了すると、LINE_LOGIN_CALLBACK_URLにリダイレクトされる
-            exit;
-        }
+        $this->Kadai_model->login_check();
 
         $data = null;
         //$this->isSession();
@@ -293,35 +181,7 @@ class Kadai extends CI_Controller
     public function update()
     {
 
-        // ログインしていない場合は、認可URLにリダイレクト
-        if(!isset($_SESSION['user_id'])) {
-
-            // ユーザーに認証と認可を要求する(PKCEにも対応)
-            // See. https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request
-
-            $_SESSION['oauth_state'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_nonce'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_code_verifier'] = $this->Kadai_model->base64url_encode(random_bytes(32));
-            
-
-            $url = LINE_LOGIN_AUTHORIZE_URL . '?' . http_build_query([
-                'response_type' => 'code',
-                'client_id' => LINE_LOGIN_CHANNEL_ID,
-                'redirect_uri' => LINE_LOGIN_CALLBACK_URL,
-                'state' => $_SESSION['oauth_state'],
-                'scope' => LINE_LOGIN_SCOPE,
-                'nonce' => $_SESSION['oauth_nonce'],
-                'code_challenge' => $this->Kadai_model->base64url_encode(hash('sha256', $_SESSION['oauth_code_verifier'], true)),
-                'code_challenge_method' => 'S256'
-            ]);
-
-            // 認可URLにリダイレクト
-            header("Location: $url");
-
-            // ユーザーによる認証と認可のプロセスが始まる
-            // 完了すると、LINE_LOGIN_CALLBACK_URLにリダイレクトされる
-            exit;
-        }
+        $this->Kadai_model->login_check();
 
         $data = null;
         var_dump($this->input->post('kadai_id', true));
