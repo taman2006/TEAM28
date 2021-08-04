@@ -72,6 +72,7 @@ class Callback extends CI_Controller {
     $_SESSION = [];
     $_SESSION['user_id'] = $res['sub'];
     $_SESSION['name'] = $res['name'];
+    $_SESSION['picture'] = $res['picture'];
     $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
 
     // メイン画面に戻る

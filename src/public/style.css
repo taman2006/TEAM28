@@ -30,6 +30,12 @@ body{
     margin-top: 10px;
 }
 
+.user {
+	text-align: center;
+}
+
+
+
 .heading::before,
 .heading::after {
 	content: '';

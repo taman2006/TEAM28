@@ -27,24 +27,22 @@
 
     <body>
         <?php echo $_SESSION['user_id']; ?>
+        <h4 class="user">ログインユーザー：<?php echo $_SESSION['name']; ?></h4>
         <div class="container" style="margin-top:50px;">
-        <div class="line-btn">
-            <i class="fab fa-line fa-3x my-green"></i>
-        </div>
-        <h2 class="heading">Task Management</h2>
-        <ul>
-        <li>ユーザー名：<?php echo $_SESSION['name']; ?></li>
-        </ul>
+            <div class="line-btn">
+                <i class="fab fa-line fa-3x my-green"></i>
+            </div>
+            <h2 class="heading">Task Management</h2>
 
-                <form action="<?= base_url('index.php/kadai/add_kadai') ?>" method="post">
-                    <div class="form-group">
-                        <?php if (!empty($success_message)): ?>
-                            <script>
-                                swal("success!", "<?php echo html_escape($success_message); ?>");
-                            </script>
-                        <?php endif; ?>
-                        <?php $all_message = null; ?>
-                        <?php if (!empty($error_message)): ?>
+            <form action="<?= base_url('index.php/kadai/add_kadai') ?>" method="post">
+                <div class="form-group">
+                    <?php if (!empty($success_message)): ?>
+                        <script>
+                            swal("success!", "<?php echo html_escape($success_message); ?>");
+                        </script>
+                    <?php endif; ?>
+                    <?php $all_message = null; ?>
+                    <?php if (!empty($error_message)): ?>
                         <ul class="error_message">
                             <?php foreach ($error_message as $message): ?>
                                 <?php $all_message = $all_message.$message.'\n'; ?>
@@ -53,17 +51,17 @@
                                 swal("error!", "<?php echo html_escape($all_message); ?>");
                             </script>        
                         </ul>
-                        <?php endif; ?>
-                        <label>課題を登録：</label>
-                        <input type="text" class="form-control" name="kadai_name" placeholder="課題名" style="max-width:1000px;">
-                    </div>
+                    <?php endif; ?>
+                    <label>課題を登録：</label>
+                    <input type="text" class="form-control" name="kadai_name" placeholder="課題名" style="max-width:1000px;">
+                </div>
 
                 <div class="form-group">
                     <label>期日：</label>
                     <input type="text" class="form-control"  name="limit_date" placeholder="期日を選択" id="date_sample" style="max-width:1000px;">
                 </div>
                 <div class="touroku-btn">
-                <button type="submit" class="btn btn-success">登録する</button>
+                    <button type="submit" class="btn btn-success">登録する</button>
                 </div>
             </form>
             <div class="tasklist">
