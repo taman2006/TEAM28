@@ -1,0 +1,242 @@
+@charset "UTF-8";
+
+/* 隙間を無くす */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1, h2, h4 {
+    margin-block-end: 1em;
+}
+
+
+
+
+/*ファーストビュー*/
+.main_view{
+    background-color: #13CEA2;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    display: flex;
+    width: 100%;
+}
+
+
+.title {
+    color: rgb(255, 255, 255);
+    font-family:"Noto Sans JP";
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-align: center;
+	display: inline-block;
+}
+
+/*無料で始めるボタン*/
+section {
+    max-width: 300px;
+    margin: 0 auto;
+}
+    a.btn_02 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #586166;
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    padding: 0 6% 0 12%;
+    color: #586166;
+    font-size: 16px;
+    text-align: left;
+    text-decoration: none;
+    position: relative;
+    transition-duration: 0.2s;
+}
+    a.btn_02:hover {
+    background: #000000;
+    color: #fff;
+}
+    a.btn_02:before {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 0 7px 8px;
+    border-color: transparent transparent transparent #586166;
+    position: absolute;
+    top: 50%;
+    left: 6%;
+    margin-top: -7px;
+}
+    a.btn_02:hover:before {
+    border-color: transparent transparent transparent #fff;
+}
+
+
+/*スマホ画面*/
+.image_sumaho{
+    display: block;
+    height: auto;
+    text-align: center;
+    max-width: 100%;
+}
+
+img.sumaho {
+    max-width: 100%;
+    margin-right: 20%;
+    height: auto;
+}
+
+.image_sumaho.col-lg-6 {
+    margin-top: 10%;
+}
+
+.second_view{
+    background-color: rgb(235, 235, 236);
+    padding-top: 80px;
+    padding-bottom: 0;
+    text-align: center;
+}
+
+
+.image_line {
+    text-align: center;
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+
+
+h2.tsuuchi {
+    font-family:"Noto Sans JP";
+    letter-spacing: 2px;
+}
+
+
+/*メリットビュー*/
+.merit_view{
+    background-color: #13CEA2 !important;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+img.merit {
+    box-shadow: 20px 20px 0 #fff;
+    margin:70px;
+}
+
+
+
+h3.merit_item {
+    font-size: 22px;
+    font-family:"Noto Sans JP";
+    color: #fff;
+}
+
+
+
+
+/*フッター*/
+
+.fotter{
+    background-color:  rgb(235, 235, 236);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: center;
+    clear: left;
+    margin-bottom: 50px
+}
+
+h2.fotter_item{
+    font-family:"Noto Sans JP";
+    letter-spacing: 2px;
+    margin-left: 20px;
+    text-align: center;
+	display: inline-block;
+}
+
+/*無料で始めるボタン*/
+section {
+    max-width: 300px;
+    margin: 0 auto;
+    }
+    a.btn_06 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    background: repeating-linear-gradient(45deg, #ffffff, #ffffff 3px, #e7e7e7 3px, #e7e7e7 30px);
+    color: #333;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    position: relative;
+}
+    a.btn_06 span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    box-sizing: border-box;
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    transition-duration: 0.2s;
+}
+    a.btn_06:hover span {
+    left: -1px;
+    top: -1px;
+}
+
+@media screen and (max-width: 700px) {/* 700px以下でスマホ画面時*/
+    h1 {
+    font-size:1.8rem;/*18px*/
+    }
+    h2{
+    font-size:1.6rem;/*16px*/
+    }
+    h3{
+        font-size:1.4rem;/*14px*/
+    }
+    .col-lg-6{
+        text-align: center;
+    }
+    h2.tsuuchi {
+        text-align: center;
+    }
+    img.sumaho {
+        max-width: 100%;
+        margin-left: 60px;
+    }
+    img.LINE {
+        max-width: 100%;
+    }
+    img.merit {
+        max-width: calc(100% - 70px);
+        margin: 0;
+        margin-bottom: 60px;
+        margin-top: 60px;
+    }
+    .merit_view{
+        flex-direction: column;
+    }
+    .merit_div{
+        max-width: 100%;
+        text-align: center;
+    }
+    h3.merit_item {
+        margin-bottom: 50px;
+}
+}
