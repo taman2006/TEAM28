@@ -27,7 +27,10 @@
 
     <body>
         <?php echo $_SESSION['user_id']; ?>
-        <h4 class="user">ログインユーザー：<?php echo $_SESSION['name']; ?></h4>
+        <?php echo $_SESSION['picture']; ?>
+        
+        <img src="<?php $_SESSION['picture']; ?>./image.jpg" alt="プロフィール画像">
+        <h4 class="user">ようこそ! <?php echo $_SESSION['name']; ?>さん</h4>
         <div class="container" style="margin-top:50px;">
             <div class="line-btn">
                 <i class="fab fa-line fa-3x my-green"></i>
