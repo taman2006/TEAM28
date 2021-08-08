@@ -41,35 +41,7 @@ class Kadai extends CI_Controller
     public function index()
     {
         
-        // ログインしていない場合は、認可URLにリダイレクト
-        if(!isset($_SESSION['user_id'])) {
-
-            // ユーザーに認証と認可を要求する(PKCEにも対応)
-            // See. https://developers.line.biz/ja/docs/line-login/integrate-line-login/#making-an-authorization-request
-
-            $_SESSION['oauth_state'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_nonce'] = bin2hex(random_bytes(16));
-            $_SESSION['oauth_code_verifier'] = $this->Kadai_model->base64url_encode(random_bytes(32));
-            
-
-            $url = LINE_LOGIN_AUTHORIZE_URL . '?' . http_build_query([
-                'response_type' => 'code',
-                'client_id' => LINE_LOGIN_CHANNEL_ID,
-                'redirect_uri' => LINE_LOGIN_CALLBACK_URL,
-                'state' => $_SESSION['oauth_state'],
-                'scope' => LINE_LOGIN_SCOPE,
-                'nonce' => $_SESSION['oauth_nonce'],
-                'code_challenge' => $this->Kadai_model->base64url_encode(hash('sha256', $_SESSION['oauth_code_verifier'], true)),
-                'code_challenge_method' => 'S256'
-            ]);
-
-            // 認可URLにリダイレクト
-            header("Location: $url");
-
-            // ユーザーによる認証と認可のプロセスが始まる
-            // 完了すると、LINE_LOGIN_CALLBACK_URLにリダイレクトされる
-            exit;
-        }
+        $this->Kadai_model->login_check();
 
         $data = null;
         $data['message_array'] = $this->Kadai_model->fetch_all_rows();
@@ -121,10 +93,13 @@ class Kadai extends CI_Controller
      */
     public function add_kadai()
     {
+
+        $this->Kadai_model->login_check();    
+
         if (!$this->request_validation()) {
             $errors = $this->form_validation->error_array();
             $_SESSION['error_message'] = $errors;
-            redirect();
+            redirect("index.php");
         }
 
         $k_name = $this->input->post('kadai_name', true);  
@@ -141,7 +116,7 @@ class Kadai extends CI_Controller
         } else {
             $_SESSION['error_message'] = '登録に失敗しました。';
         }
-        redirect();
+        redirect("index.php");
     }
     
     /**
@@ -151,16 +126,19 @@ class Kadai extends CI_Controller
      */
     public function delete_bbs()
     {
+
+        $this->Kadai_model->login_check();
+
         if (!($id = $this->input->post('kadai_id', true))) {
             $_SESSION['error_message'][] = '削除に必要なパラメータが含まれていません';
         }
 
         if ($this->Kadai_model->delete_row($id)) {
             $_SESSION['success_message'] = 'メッセージを削除しました。';
-            redirect();
+            redirect("index.php");
         } else {
             $_SESSION['error_message'][] = '削除に失敗しました。';
-            redirect();
+            redirect("index.php");
         }
     }
 
@@ -171,17 +149,20 @@ class Kadai extends CI_Controller
      */
     public function revise()
     {
+
+        $this->Kadai_model->login_check();
+
         $data = null;
         //$this->isSession();
 
         if (!($id = $this->input->post('kadai_id', true)) || !is_numeric($id)) {
             $_SESSION['error_message'][] = '更新に必要なパラメータが含まれていません';
-            redirect();
+            redirect("index.php");
         }
 
         if (empty($data['message_data'] = $this->Kadai_model->fetch_one_row($id))) {
             $_SESSION['error_message'][] = '存在しないレコードです。';
-            redirect();
+            redirect("index.php");
         }
 
         if (!empty($_SESSION['error_message'])) {
@@ -199,18 +180,21 @@ class Kadai extends CI_Controller
      */
     public function update()
     {
+
+        $this->Kadai_model->login_check();
+
         $data = null;
         var_dump($this->input->post('kadai_id', true));
         
         if (!($id = $this->input->post('kadai_id', true))) {
             $_SESSION['error_message'][] = '更新に必要なパラメータが含まれていません';
-            redirect();
+            redirect("index.php");
         }
 
         if (!$this->request_validation()) {
             $error_message = $this->form_validation->error_array();
             $_SESSION['error_message'] = $error_message;
-            redirect();
+            redirect("index.php");
         }
 
         $k_name = $this->input->post('kadai_name', true);  
@@ -224,10 +208,10 @@ class Kadai extends CI_Controller
             
         if ($this->Kadai_model->update_row($id, $data)) {
             $_SESSION['success_message'] = '課題を更新しました。';
-            redirect();
+            redirect("index.php");
         } else {
             $_SESSION['error_message'][] = '更新に失敗しました。';
-            redirect();
+            redirect("index.php");
         }   
     }
 
