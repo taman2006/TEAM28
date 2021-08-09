@@ -34,7 +34,11 @@ body{
 	text-align: center;
 }
 
-
+.user img {
+    width: 50px;
+    border-radius: 50%;
+    border: solid #aaa;
+}
 
 .heading::before,
 .heading::after {
