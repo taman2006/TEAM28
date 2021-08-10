@@ -26,6 +26,9 @@
     </head>
 
     <body>
+    <!-- <?php echo $_SESSION['user_id']; ?>　　
+    <?php echo $_SESSION['csrf_token']; ?> -->
+
         <h4 class="user">
             <img src="<?php echo $_SESSION['picture']; ?>" alt="プロフィール画像">
             ようこそ! <?php echo $_SESSION['name']; ?>さん
