@@ -47,6 +47,7 @@
                     <button type="button" class="btn btn-success">修正する</button>
                 </div>
                 <input type="hidden" name="kadai_id" value="<?= html_escape($message_data['id'] ?? "")?>">
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             </form>   
         </div>
 

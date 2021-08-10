@@ -68,6 +68,7 @@
                 <div class="touroku-btn">
                     <button type="submit" class="btn btn-success">登録する</button>
                 </div>
+                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             </form>
             <div class="tasklist">
                 <h2 class="heading">Task List</h2>

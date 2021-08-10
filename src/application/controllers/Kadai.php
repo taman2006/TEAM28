@@ -96,27 +96,37 @@ class Kadai extends CI_Controller
 
         $this->Kadai_model->login_check();    
 
-        if (!$this->request_validation()) {
-            $errors = $this->form_validation->error_array();
-            $_SESSION['error_message'] = $errors;
+        // POSTでcsrf_tokenの項目名でパラメーターが送信されていること且つ、
+        // セッションに保存された値と一致する場合は正常なリクエストとして処理を行います
+        if (isset($_POST["csrf_token"]) 
+         && $_POST["csrf_token"] === $_SESSION['csrf_token']) {
+        
+            if (!$this->request_validation()) {
+                $errors = $this->form_validation->error_array();
+                $_SESSION['error_message'] = $errors;
+                redirect("index.php");
+            }
+
+            $k_name = $this->input->post('kadai_name', true);  
+            $limit = $this->input->post('limit_date', true);  
+
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'kadai_name' => $k_name,
+                'limit_date' => $limit
+            ];
+
+            if ($this->Kadai_model->insert_row($data)) {
+                $_SESSION['success_message'] = '課題を登録しました。';
+            } else {
+                $_SESSION['error_message'] = '登録に失敗しました。';
+            }
+            redirect("index.php");
+
+        } else {
+            $_SESSION['error_message'] = '不正なリクエストです。';
             redirect("index.php");
         }
-
-        $k_name = $this->input->post('kadai_name', true);  
-        $limit = $this->input->post('limit_date', true);  
-
-        $data = [
-            'user_id' => $_SESSION['user_id'],
-            'kadai_name' => $k_name,
-            'limit_date' => $limit
-        ];
-
-        if ($this->Kadai_model->insert_row($data)) {
-            $_SESSION['success_message'] = '課題を登録しました。';
-        } else {
-            $_SESSION['error_message'] = '登録に失敗しました。';
-        }
-        redirect("index.php");
     }
     
     /**
@@ -183,36 +193,46 @@ class Kadai extends CI_Controller
 
         $this->Kadai_model->login_check();
 
-        $data = null;
-        var_dump($this->input->post('kadai_id', true));
-        
-        if (!($id = $this->input->post('kadai_id', true))) {
-            $_SESSION['error_message'][] = '更新に必要なパラメータが含まれていません';
-            redirect("index.php");
-        }
+        // POSTでcsrf_tokenの項目名でパラメーターが送信されていること且つ、
+        // セッションに保存された値と一致する場合は正常なリクエストとして処理を行います
+        if (isset($_POST["csrf_token"]) 
+         && $_POST["csrf_token"] === $_SESSION['csrf_token']) {        
 
-        if (!$this->request_validation()) {
-            $error_message = $this->form_validation->error_array();
-            $_SESSION['error_message'] = $error_message;
-            redirect("index.php");
-        }
-
-        $k_name = $this->input->post('kadai_name', true);  
-        $limit = $this->input->post('limit_date', true);  
-       
-        $data = [
-            'user_id' => $_SESSION['user_id'],
-            'kadai_name' => $k_name,
-            'limit_date' => $limit
-        ];
+            $data = null;
+            var_dump($this->input->post('kadai_id', true));
             
-        if ($this->Kadai_model->update_row($id, $data)) {
-            $_SESSION['success_message'] = '課題を更新しました。';
-            redirect("index.php");
+            if (!($id = $this->input->post('kadai_id', true))) {
+                $_SESSION['error_message'][] = '更新に必要なパラメータが含まれていません';
+                redirect("index.php");
+            }
+
+            if (!$this->request_validation()) {
+                $error_message = $this->form_validation->error_array();
+                $_SESSION['error_message'] = $error_message;
+                redirect("index.php");
+            }
+
+            $k_name = $this->input->post('kadai_name', true);  
+            $limit = $this->input->post('limit_date', true);  
+        
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'kadai_name' => $k_name,
+                'limit_date' => $limit
+            ];
+                
+            if ($this->Kadai_model->update_row($id, $data)) {
+                $_SESSION['success_message'] = '課題を更新しました。';
+                redirect("index.php");
+            } else {
+                $_SESSION['error_message'][] = '更新に失敗しました。';
+                redirect("index.php");
+            }  
+
         } else {
-            $_SESSION['error_message'][] = '更新に失敗しました。';
+            $_SESSION['error_message'] = '不正なリクエストです。';
             redirect("index.php");
-        }   
+        }
     }
 
 }
