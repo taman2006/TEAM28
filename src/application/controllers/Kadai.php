@@ -236,4 +236,3 @@ class Kadai extends CI_Controller
     }
 
 }
-
