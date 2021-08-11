@@ -122,5 +122,3 @@ class Kadai_model extends CI_Model {
         return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
     }
 }
-
-    

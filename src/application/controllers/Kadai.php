@@ -124,7 +124,7 @@ class Kadai extends CI_Controller
             redirect("index.php");
 
         } else {
-            $_SESSION['error_message'] = '不正なリクエストです。';
+            $_SESSION['error_message'][] = '不正なリクエストです。';
             redirect("index.php");
         }
     }
@@ -139,15 +139,25 @@ class Kadai extends CI_Controller
 
         $this->Kadai_model->login_check();
 
-        if (!($id = $this->input->post('kadai_id', true))) {
-            $_SESSION['error_message'][] = '削除に必要なパラメータが含まれていません';
-        }
+        // POSTでcsrf_tokenの項目名でパラメーターが送信されていること且つ、
+        // セッションに保存された値と一致する場合は正常なリクエストとして処理を行います
+        if (isset($_POST["csrf_token"]) 
+         && $_POST["csrf_token"] === $_SESSION['csrf_token']) {        
 
-        if ($this->Kadai_model->delete_row($id)) {
-            $_SESSION['success_message'] = 'メッセージを削除しました。';
-            redirect("index.php");
+            if (!($id = $this->input->post('kadai_id', true))) {
+                $_SESSION['error_message'][] = '削除に必要なパラメータが含まれていません';
+            }
+
+            if ($this->Kadai_model->delete_row($id)) {
+                $_SESSION['success_message'] = 'メッセージを削除しました。';
+                redirect("index.php");
+            } else {
+                $_SESSION['error_message'][] = '削除に失敗しました。';
+                redirect("index.php");
+            }
+
         } else {
-            $_SESSION['error_message'][] = '削除に失敗しました。';
+            $_SESSION['error_message'][] = '不正なリクエストです。';
             redirect("index.php");
         }
     }
@@ -230,9 +240,8 @@ class Kadai extends CI_Controller
             }  
 
         } else {
-            $_SESSION['error_message'] = '不正なリクエストです。';
+            $_SESSION['error_message'][] = '不正なリクエストです。';
             redirect("index.php");
         }
     }
-
 }

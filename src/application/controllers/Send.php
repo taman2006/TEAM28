@@ -8,7 +8,6 @@ class Send extends CI_Controller {
 
     $this->load->model('Get_data');
     $array = $this->Get_data->get_data();
-
     // foreach($array as $vals){
     //   $time = $this->Get_data->convertToDayTimeAgo($vals['limit_date']);
     //   if($time < 4 && $time > 0){
@@ -16,7 +15,7 @@ class Send extends CI_Controller {
     //         echo '<br>';
     //       }
     // }     
-        
+       
     foreach($array as $vals){
       $this->load->model('Get_data');
       $time = $this->Get_data->convertToDayTimeAgo($vals['limit_date']);
@@ -27,6 +26,6 @@ class Send extends CI_Controller {
             $this->send_message->post_message($vals['user_id'],$message);
 
       }
-    }   
+    } 
   }
 }

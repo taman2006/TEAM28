@@ -47,6 +47,4 @@ class send_message extends CI_Model {
     // メイン画面に戻る
     // header('Location: ' . APP_MAIN_URL);
     }
-    
-
 }
