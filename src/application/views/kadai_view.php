@@ -103,6 +103,7 @@
                                 <form action="<?= base_url('index.php/kadai/delete_bbs') ?>" method="post">
                                     <button type="button" class="btn btn-dark btn-delete">削除</button>
                                     <input type="hidden" name="kadai_id" value="<?= html_escape($value['id'] ?? "") ?>">
+                                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                                 </form>
                             </td>
                         </tr>
