@@ -26,12 +26,19 @@
     </head>
 
     <body>
-    <!-- <?php echo $_SESSION['user_id']; ?>　　
-    <?php echo $_SESSION['csrf_token']; ?> -->
+    <!-- <?php echo $_SESSION['picture']; ?> -->
 
         <h4 class="user">
-            <img src="<?php echo $_SESSION['picture']; ?>" alt="プロフィール画像">
-            ようこそ! <?php echo $_SESSION['name']; ?>さん
+            
+            <?php if (!empty($_SESSION['picture'])): ?>
+                <img src="<?php echo $_SESSION['picture']; ?>" alt="プロフィール画像">
+                ようこそ! <?php echo $_SESSION['name']; ?>さん
+            
+            <?php else : ?>
+                <img src="../../public/images/icon-default-user.png" alt="プロフィール画像">
+                ようこそ! <?php echo $_SESSION['name']; ?>さん
+            <?php endif; ?>
+
         </h4>
         <div class="container" style="margin-top:50px;">
             <div class="line-btn">
