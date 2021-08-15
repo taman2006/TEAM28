@@ -75,7 +75,7 @@ class Kadai extends CI_Controller
             ],
             [
                 'field' => 'limit_date',
-                'label' => '期限',
+                'label' => '期日',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '%sを選択してください。',
@@ -107,21 +107,30 @@ class Kadai extends CI_Controller
                 redirect("index.php");
             }
 
-            $k_name = $this->input->post('kadai_name', true);  
-            $limit = $this->input->post('limit_date', true);  
+            // POSTで送信されたlimit_dateのデータ型が日付であるかどうかのチェック
+            list($Y, $m, $d) = explode('-', $this->input->post('limit_date', true));
+            if (checkdate($m, $d, $Y) === true) {
+                
+                $k_name = $this->input->post('kadai_name', true);  
+                $limit = $this->input->post('limit_date', true);  
 
-            $data = [
-                'user_id' => $_SESSION['user_id'],
-                'kadai_name' => $k_name,
-                'limit_date' => $limit
-            ];
+                $data = [
+                    'user_id' => $_SESSION['user_id'],
+                    'kadai_name' => $k_name,
+                    'limit_date' => $limit
+                ];
 
-            if ($this->Kadai_model->insert_row($data)) {
-                $_SESSION['success_message'] = '課題を登録しました。';
+                if ($this->Kadai_model->insert_row($data)) {
+                    $_SESSION['success_message'] = '課題を登録しました。';
+                } else {
+                    $_SESSION['error_message'] = '登録に失敗しました。';
+                }
+                redirect("index.php");
+
             } else {
-                $_SESSION['error_message'] = '登録に失敗しました。';
+                $_SESSION['error_message'][] = '日付（yyyy-mm-dd）を入力してください';    
+                redirect("index.php");
             }
-            redirect("index.php");
 
         } else {
             $_SESSION['error_message'][] = '不正なリクエストです。';
@@ -241,23 +250,30 @@ class Kadai extends CI_Controller
                 redirect("index.php");
             }
 
-            $k_name = $this->input->post('kadai_name', true);  
-            $limit = $this->input->post('limit_date', true);  
-        
-            $data = [
-                'user_id' => $_SESSION['user_id'],
-                'kadai_name' => $k_name,
-                'limit_date' => $limit
-            ];
-                
-            if ($this->Kadai_model->update_row($id, $data)) {
-                $_SESSION['success_message'] = '課題を更新しました。';
-                redirect("index.php");
-            } else {
-                $_SESSION['error_message'][] = '更新に失敗しました。';
-                redirect("index.php");
-            }  
+            // POSTで送信されたlimit_dateのデータ型が日付であるかどうかのチェック
+            list($Y, $m, $d) = explode('-', $this->input->post('limit_date', true));
+            if (checkdate($m, $d, $Y) === true) {            
 
+                $k_name = $this->input->post('kadai_name', true);  
+                $limit = $this->input->post('limit_date', true);  
+            
+                $data = [
+                    'user_id' => $_SESSION['user_id'],
+                    'kadai_name' => $k_name,
+                    'limit_date' => $limit
+                ];
+                    
+                if ($this->Kadai_model->update_row($id, $data)) {
+                    $_SESSION['success_message'] = '課題を更新しました。';
+                    redirect("index.php");
+                } else {
+                    $_SESSION['error_message'][] = '更新に失敗しました。';
+                    redirect("index.php");
+                }  
+            } else {
+                $_SESSION['error_message'][] = '日付（yyyy-mm-dd）を入力してください';    
+                redirect("index.php");
+            }
         } else {
             $_SESSION['error_message'][] = '不正なリクエストです。';
             redirect("index.php");

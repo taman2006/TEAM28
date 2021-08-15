@@ -9,12 +9,6 @@ class Kadai_model extends CI_Model {
         $this->load->database();
     }
 
-    /**
-     * レコードをid検索して配列として出力
-     * 
-     * @param int $id 
-     * @return array
-     */
     public function login_check()
     {
         // ログインしていない場合は、認可URLにリダイレクト
