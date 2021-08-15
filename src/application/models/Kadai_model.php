@@ -58,7 +58,7 @@ class Kadai_model extends CI_Model {
     public function fetch_one_row($id)
     {
         return $this->db->where('id', $id)
-            ->select('id, limit_date, kadai_name')
+            ->select('id, user_id, limit_date, kadai_name')
             ->get('kadai_kanri')
             ->row_array();
     }
@@ -66,7 +66,7 @@ class Kadai_model extends CI_Model {
     /**
      * ユーザー毎の全課題を取得して配列として出力
      * 
-     * @param int $limit=null 
+     * @param int $limit=null
      * @return array
      */
     public function fetch_all_rows($limit=null)

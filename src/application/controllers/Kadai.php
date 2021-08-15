@@ -144,6 +144,11 @@ class Kadai extends CI_Controller
         if (isset($_POST["csrf_token"]) 
          && $_POST["csrf_token"] === $_SESSION['csrf_token']) {        
 
+            if (!($_SESSION['user_id'] === $this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true))['user_id'])) {
+                $_SESSION['error_message'][] = '不正なリクエストです。';
+                redirect("index.php");
+            }
+            
             if (!($id = $this->input->post('kadai_id', true))) {
                 $_SESSION['error_message'][] = '削除に必要なパラメータが含まれていません';
             }
@@ -174,7 +179,16 @@ class Kadai extends CI_Controller
 
         $data = null;
         //$this->isSession();
+        // var_dump($this->input->post('kadai_id', true));
+        // var_dump($_SESSION['user_id']);
+        // var_dump($this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true)));
+        // exit;
 
+        if (!($_SESSION['user_id'] === $this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true))['user_id'])) {
+            $_SESSION['error_message'][] = '不正なリクエストです。';
+            redirect("index.php");
+        }
+        
         if (!($id = $this->input->post('kadai_id', true)) || !is_numeric($id)) {
             $_SESSION['error_message'][] = '更新に必要なパラメータが含まれていません';
             redirect("index.php");
@@ -209,7 +223,12 @@ class Kadai extends CI_Controller
          && $_POST["csrf_token"] === $_SESSION['csrf_token']) {        
 
             $data = null;
-            var_dump($this->input->post('kadai_id', true));
+            // var_dump($this->input->post('kadai_id', true));
+            
+            if (!($_SESSION['user_id'] === $this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true))['user_id'])) {
+                $_SESSION['error_message'][] = '不正なリクエストです。';
+                redirect("index.php");
+            }
             
             if (!($id = $this->input->post('kadai_id', true))) {
                 $_SESSION['error_message'][] = '更新に必要なパラメータが含まれていません';

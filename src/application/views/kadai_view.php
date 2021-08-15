@@ -26,7 +26,6 @@
     </head>
 
     <body>
-    <!-- <?php echo $_SESSION['picture']; ?> -->
 
         <h4 class="user">
             
@@ -99,7 +98,6 @@
                                 <form action="<?= base_url('index.php/kadai/revise') ?>" method="post">                   
                                     <button type="submit" class="btn btn-secondary">編集</button>
                                     <input type="hidden" name="kadai_id" value="<?= html_escape($value['id'] ?? "") ?>">
-                                    <input type="hidden" name="user_id" value="<?= html_escape($value['user_id'] ?? "") ?>">
                                     <input type="hidden" name="limit_date" value="<?= html_escape($value['limit_date'] ?? "") ?>">
                                     <input type="hidden" name="kadai_name" value="<?= html_escape($value['kadai_name'] ?? "") ?>">
 
