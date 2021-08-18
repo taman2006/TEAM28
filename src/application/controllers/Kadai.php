@@ -152,14 +152,14 @@ class Kadai extends CI_Controller
         // セッションに保存された値と一致する場合は正常なリクエストとして処理を行います
         if (isset($_POST["csrf_token"]) 
          && $_POST["csrf_token"] === $_SESSION['csrf_token']) {        
+    
+            if (!($id = $this->input->post('kadai_id', true))) {
+                $_SESSION['error_message'][] = '削除に必要なパラメータが含まれていません';
+            }
 
             if (!($_SESSION['user_id'] === $this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true))['user_id'])) {
                 $_SESSION['error_message'][] = '不正なリクエストです。';
                 redirect("index.php");
-            }
-            
-            if (!($id = $this->input->post('kadai_id', true))) {
-                $_SESSION['error_message'][] = '削除に必要なパラメータが含まれていません';
             }
 
             if ($this->Kadai_model->delete_row($id)) {
@@ -193,10 +193,7 @@ class Kadai extends CI_Controller
         // var_dump($this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true)));
         // exit;
 
-        if (!($_SESSION['user_id'] === $this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true))['user_id'])) {
-            $_SESSION['error_message'][] = '不正なリクエストです。';
-            redirect("index.php");
-        }
+
         
         if (!($id = $this->input->post('kadai_id', true)) || !is_numeric($id)) {
             $_SESSION['error_message'][] = '更新に必要なパラメータが含まれていません';
@@ -205,6 +202,11 @@ class Kadai extends CI_Controller
 
         if (empty($data['message_data'] = $this->Kadai_model->fetch_one_row($id))) {
             $_SESSION['error_message'][] = '存在しないレコードです。';
+            redirect("index.php");
+        }
+
+        if (!($_SESSION['user_id'] === $this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true))['user_id'])) {
+            $_SESSION['error_message'][] = '不正なリクエストです。';
             redirect("index.php");
         }
 
@@ -234,13 +236,13 @@ class Kadai extends CI_Controller
             $data = null;
             // var_dump($this->input->post('kadai_id', true));
             
-            if (!($_SESSION['user_id'] === $this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true))['user_id'])) {
-                $_SESSION['error_message'][] = '不正なリクエストです。';
-                redirect("index.php");
-            }
-            
             if (!($id = $this->input->post('kadai_id', true))) {
                 $_SESSION['error_message'][] = '更新に必要なパラメータが含まれていません';
+                redirect("index.php");
+            }
+
+            if (!($_SESSION['user_id'] === $this->Kadai_model->fetch_one_row($this->input->post('kadai_id', true))['user_id'])) {
+                $_SESSION['error_message'][] = '不正なリクエストです。';
                 redirect("index.php");
             }
 
